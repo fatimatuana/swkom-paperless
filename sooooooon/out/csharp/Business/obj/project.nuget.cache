@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hBBYGv35UeJTtZz1ByS3mKBZBeoycmpNWh97mRdfvPDYBjk60UANth3b8nN3uH2y89I07plxv7aG05si5vkiQQ==",
+  "dgSpecHash": "IL8JdGcMfn3Qi770hmzObVEXA4XdQcFb7kHyc6ebLrUhbpeqQz+IlXVZXGd4xp2xjqGQYvN1tc6ZHF7Dp8dKYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatim\\Desktop\\test-\\sooooooon\\out\\csharp\\Business\\Business.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fatim\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0\\microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.0\\microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",
@@ -21,6 +23,7 @@
     "C:\\Users\\fatim\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
