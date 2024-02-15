@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "IL8JdGcMfn3Qi770hmzObVEXA4XdQcFb7kHyc6ebLrUhbpeqQz+IlXVZXGd4xp2xjqGQYvN1tc6ZHF7Dp8dKYA==",
+  "dgSpecHash": "Wp0sgOqQyeNqEPXNfvAzoRXNdDccTchDj/JY53xWeuYHwKDnsDn/S1FbhETg7mCxL5Y/k9DZbKRTTvaxJ92vIg==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatim\\Desktop\\test-\\sooooooon\\out\\csharp\\Business\\Business.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fatim\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\autofac.extras.dynamicproxy\\7.1.0\\autofac.extras.dynamicproxy.7.1.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
@@ -22,7 +24,7 @@
     "C:\\Users\\fatim\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
-    "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],

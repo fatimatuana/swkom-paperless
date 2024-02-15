@@ -26,7 +26,7 @@ namespace Org.OpenAPITools.Controllers
     /// 
     /// </summary>
     [ApiController]
-    public class PetApiController : ControllerBase
+    public class PetsApiController : ControllerBase
     { 
         /// <summary>
         /// Add a new pet to the store***

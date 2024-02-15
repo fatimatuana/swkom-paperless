@@ -18,15 +18,15 @@ namespace Entities.Concrete
 
         public string? Title { get; set; }
         public string? Content { get; set; }
-        public List<string> Tags { get; set; } = new List<string>();
-        public byte[] Documentfile { get; set; }
+        public List<string>? Tags { get; set; } = new List<string>();
+        public byte[]? Documentfile { get; set; }
 
 
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-        public DateTime Modified { get; set; }
-        public DateTime Added { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? Modified { get; set; }
+        public DateTime? Added { get; set; }
         public string? ArchiveSerialNumber { get; set; }
 
         public string? OriginalFileName { get; set; }

@@ -1,11 +1,9 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Business.Concrete
 {
@@ -19,6 +17,7 @@ namespace Business.Concrete
             _documentDal = documentDal;
         }
 
+        [ValidationAspect(typeof(DocumentValidator))]
         public void Add(Document document)
         {
             _documentDal.Add(document);

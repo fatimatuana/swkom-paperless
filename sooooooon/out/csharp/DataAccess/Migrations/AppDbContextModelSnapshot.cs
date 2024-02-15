@@ -18,7 +18,7 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -31,7 +31,7 @@ namespace DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Added")
+                    b.Property<DateTime?>("Added")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ArchiveSerialNumber")
@@ -46,20 +46,19 @@ namespace DataAccess.Migrations
                     b.Property<int?>("Correspondent")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Created")
+                    b.Property<DateTime?>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("DocumentType")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("Documentfile")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("OriginalFileName")
@@ -69,7 +68,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<List<string>>("Tags")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<string>("Title")
