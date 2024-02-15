@@ -28,12 +28,6 @@
 
 version: "3.4"
 services:
-  broker:
-    image: docker.io/library/redis:7
-    restart: unless-stopped
-    volumes:
-      - redisdata:/data
-
   db:
     image: docker.io/library/postgres:15
     restart: unless-stopped
@@ -43,13 +37,15 @@ services:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
       POSTGRES_PASSWORD: paperless
-
+      
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
     depends_on:
       - db
-      - broker
+      #- broker
+      - rabbitmq #rabbitmq ***** as dependency
+      - minio
     ports:
       - "8080:8000"
     healthcheck:
@@ -66,6 +62,56 @@ services:
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
+      PAPERLESS_RABBITMQ_HOST: rabbitmq  # Set RabbitMQ host
+      PAPERLESS_RABBITMQ_PORT: 5672  # Set RabbitMQ port
+      PAPERLESS_RABBITMQ_USER: paperless  # Set RabbitMQ user
+      PAPERLESS_RABBITMQ_PASSWORD: paperless  # Set RabbitMQ password
+      
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html
+    depends_on:
+      - webserver
+      
+#  minio:
+#    image: minio/minio:RELEASE.2020-05-06T23-23-25Z
+#    restart: unless-stopped
+#    ports:
+#      - "9000:9000"
+#      #- "9001:9001"
+#    environment:
+#      MINIO_ROOT_USER: fatimatuana
+#      MINIO_ROOT_PASSWORD: fatimatuana
+#    volumes:
+#      - minio_data:/data
+#     
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ACCESS_KEY: fatimatuana
+      MINIO_SECRET_KEY: fatimatuana
+    command: server --console-address ":9001" /data
+      
+  rabbitmq:
+    image: rabbitmq:management
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: paperless
+      RABBITMQ_DEFAULT_PASS: paperless
+
 
 
 volumes:
@@ -73,3 +119,5 @@ volumes:
   media:
   pgdata:
   redisdata:
+#  minio_data:
+  minio_storage:
