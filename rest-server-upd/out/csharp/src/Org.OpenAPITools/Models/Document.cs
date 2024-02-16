@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// bizimkiii 
 namespace Org.OpenAPITools.Models
 {
     public class Document

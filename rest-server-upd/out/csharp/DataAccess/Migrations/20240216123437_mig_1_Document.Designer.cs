@@ -13,14 +13,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240215113449_mig_1")]
-    partial class mig_1
+    [Migration("20240216123437_mig_1_Document")]
+    partial class mig_1_Document
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -45,7 +45,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<int?>("Correspondent")
+                    b.Property<int>("Correspondent")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
@@ -54,7 +54,7 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("DocumentType")
+                    b.Property<int>("DocumentType")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("Documentfile")
@@ -70,11 +70,12 @@ namespace DataAccess.Migrations
                     b.Property<int?>("StoragePath")
                         .HasColumnType("integer");
 
-                    b.Property<List<string>>("Tags")
+                    b.Property<List<int?>>("Tags")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

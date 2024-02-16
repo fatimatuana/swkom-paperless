@@ -31,7 +31,7 @@ namespace DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("Added")
+                    b.Property<DateTime>("Added")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ArchiveSerialNumber")
@@ -43,22 +43,23 @@ namespace DataAccess.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<int?>("Correspondent")
+                    b.Property<int>("Correspondent")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("CreatedDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("DocumentType")
+                    b.Property<int>("DocumentType")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("Documentfile")
+                        .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("OriginalFileName")
@@ -67,10 +68,12 @@ namespace DataAccess.Migrations
                     b.Property<int?>("StoragePath")
                         .HasColumnType("integer");
 
-                    b.Property<List<string>>("Tags")
-                        .HasColumnType("text[]");
+                    b.Property<List<int?>>("Tags")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

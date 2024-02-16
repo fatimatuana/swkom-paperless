@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+//bizimkiii
 namespace Org.OpenAPITools.Controllers
 {
     [Route("/api/testget")]

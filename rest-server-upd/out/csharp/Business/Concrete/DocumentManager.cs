@@ -3,7 +3,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using DataAccess.Abstract;
 using Entities.Concrete;
-
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -18,9 +18,9 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(DocumentValidator))]
-        public void Add(Document document)
+        public void Add(Document entity)
         {
-            _documentDal.Add(document);
+            _documentDal.Add(entity);
         }
 
         public void Delete(Document document)
@@ -46,6 +46,37 @@ namespace Business.Concrete
         public void Update(Document document)
         {
             _documentDal.Update(document);
+        }
+
+
+        public void PostFileAsync(IFormFile fileData)
+        {
+            try
+            {
+                var document = new Document()
+                {
+                    //Id = 10,
+                    Title = fileData.FileName,
+                    //Documentfile = fileData.ContentDisposition,
+                    DocumentType = 1,
+                    Content = fileData.ContentDisposition
+                };
+
+                using (var stream = new MemoryStream())
+                {
+                    fileData.CopyTo(stream);
+
+                    document.Documentfile = stream.ToArray();
+                }
+
+                _documentDal.Add(document);
+                //var result = dbContextClass.FileDetails.Add(fileDetails);
+                //await dbContextClass.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

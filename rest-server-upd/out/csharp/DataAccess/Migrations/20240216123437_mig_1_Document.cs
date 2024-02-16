@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
-    public partial class mig_1 : Migration
+    public partial class mig_1_Document : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,12 +17,12 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Correspondent = table.Column<int>(type: "integer", nullable: true),
-                    DocumentType = table.Column<int>(type: "integer", nullable: true),
+                    Correspondent = table.Column<int>(type: "integer", nullable: false),
+                    DocumentType = table.Column<int>(type: "integer", nullable: false),
                     StoragePath = table.Column<int>(type: "integer", nullable: true),
-                    Title = table.Column<string>(type: "text", nullable: true),
+                    Title = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: true),
-                    Tags = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Tags = table.Column<List<int?>>(type: "integer[]", nullable: false),
                     Documentfile = table.Column<byte[]>(type: "bytea", nullable: false),
                     Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),

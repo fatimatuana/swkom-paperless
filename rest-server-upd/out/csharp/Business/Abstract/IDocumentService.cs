@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace Business.Abstract
 
         Document GetByTitle(string title);
 
-        void Add (Document document);
+        void Add (Document entity);
 
         void Delete (Document document);
 
         void Update (Document document);
+
+        void PostFileAsync(IFormFile fileData);
     }
 }
