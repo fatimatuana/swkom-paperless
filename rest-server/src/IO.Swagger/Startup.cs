@@ -74,7 +74,7 @@ namespace IO.Swagger
                     {
                         Version = "1.0",
                         Title = "Paperless Rest Server",
-                        Description = "Paperless Rest Server (ASP.NET Core 7.0)",
+                        Description = "Paperless Rest Server (ASP.NET Core 3.)",
                         Contact = new OpenApiContact()
                         {
                            Name = "Swagger Codegen Contributors",
