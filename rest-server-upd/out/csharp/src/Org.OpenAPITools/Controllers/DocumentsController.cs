@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Helpers;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations; // for [Required]..
 
 //bizimkii 
 namespace Org.OpenAPITools.Controllers
@@ -33,9 +33,10 @@ namespace Org.OpenAPITools.Controllers
         //}
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string title)
         {
-            var result = _documentService.GetByTitle("if21b140_github_repo.txt");
+            var result = _documentService.GetByTitle(title);
+            //var result = _documentService.GetByTitle("if21b140_github_repo.txt");
             return Ok(result.Content);
         }
 
@@ -48,6 +49,15 @@ namespace Org.OpenAPITools.Controllers
             _documentService.PostFileAsync(file);
             return Ok();
             
+        }
+
+        [HttpDelete]
+        [Route("/api/v2/documents/{id}")]
+        public IActionResult Delete([FromRoute][Required] int id)
+        {
+            var document = _documentService.GetById(id);
+            _documentService.Delete(document);
+            return Ok();
         }
 
     }
