@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NaGIUKAoPlWM0Y9Hx6nBx7XlOK+aMJbUhqL72HQU6yuElcpWzKPIPoiQZgXiDWYXBEudEALl2eiSe9YxMQE1vA==",
+  "dgSpecHash": "itR7PtGMKy3Wa7Wtj+VKhv0IdEqKpVv07/9pO6nxMTzGjDYwTA0xACdEyhQduvlj7NYw0BJa4sJ64k7/MCzQaQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatim\\Desktop\\test-\\rest-server-upd\\out\\csharp\\Business\\Business.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,9 @@
     "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
-    "C:\\Users\\fatim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\fatim\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\tesseract\\5.2.0\\tesseract.5.2.0.nupkg.sha512"
   ],
   "logs": []
 }

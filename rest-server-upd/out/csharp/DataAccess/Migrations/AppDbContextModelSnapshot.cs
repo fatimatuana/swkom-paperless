@@ -65,6 +65,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("Modified")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("OcrResult")
+                        .HasColumnType("text");
+
                     b.Property<string>("OriginalFileName")
                         .HasColumnType("text");
 

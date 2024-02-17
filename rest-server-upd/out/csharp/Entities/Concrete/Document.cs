@@ -32,6 +32,6 @@ namespace Entities.Concrete
         public string? OriginalFileName { get; set; }
 
         public string? ArchivedFileName { get; set; }
-
+        public string? OcrResult { get; set; }
     }
 }
