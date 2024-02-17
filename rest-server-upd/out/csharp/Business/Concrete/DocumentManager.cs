@@ -15,12 +15,15 @@ namespace Business.Concrete
         IMapper _mapper;
         IDocumentDal _documentDal;
         IFileOperation _fileOperation;
+        IRabbitMQService _rabbitMQService;
 
-        public DocumentManager(IDocumentDal documentDal, IMapper mapper, IFileOperation fileOperation)
+        public DocumentManager(IDocumentDal documentDal, IMapper mapper, IFileOperation fileOperation, IRabbitMQService rabbitMQService)
         {
             _documentDal = documentDal;
             _mapper = mapper;
             _fileOperation = fileOperation;
+
+            _rabbitMQService = rabbitMQService;
         }
 
         [ValidationAspect(typeof(DocumentValidator))]
@@ -80,7 +83,7 @@ namespace Business.Concrete
 
                 _documentDal.Add(document);
                 _fileOperation.UploadFile(fileData);
-
+                _rabbitMQService.SendEvent(document);
 
 
                 //var result = dbContextClass.FileDetails.Add(fileDetails);

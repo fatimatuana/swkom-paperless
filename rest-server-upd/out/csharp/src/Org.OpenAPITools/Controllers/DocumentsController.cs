@@ -11,9 +11,8 @@ namespace Org.OpenAPITools.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        IDocumentService _documentService;
-  
-
+        IDocumentService _documentService; 
+        
         public DocumentsController(IDocumentService documentService)
         {
             _documentService = documentService;

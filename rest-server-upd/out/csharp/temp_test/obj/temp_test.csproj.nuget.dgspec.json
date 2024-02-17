@@ -75,6 +75,10 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            },
             "Tesseract": {
               "target": "Package",
               "version": "[5.2.0, )"

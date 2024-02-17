@@ -5,15 +5,17 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Org.OpenAPITools", "src\Org.OpenAPITools\Org.OpenAPITools.csproj", "{B13005DD-2CD4-4B85-93C3-B091A0D5A196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F42C2C65-A9A7-451B-BC23-92182444C61F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F42C2C65-A9A7-451B-BC23-92182444C61F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{699C18D8-05C1-4319-ADB9-D028FCCC9395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{699C18D8-05C1-4319-ADB9-D028FCCC9395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{072BEC03-CFBA-4CC9-B7A1-8B6F5086B66B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{072BEC03-CFBA-4CC9-B7A1-8B6F5086B66B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{175DECB2-154C-4006-9017-6B008E5FFEE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{175DECB2-154C-4006-9017-6B008E5FFEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "temp_test", "temp_test\temp_test.csproj", "{9E5C74A9-F362-4BC3-BC3B-962623CE499F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "temp_test", "temp_test\temp_test.csproj", "{9E5C74A9-F362-4BC3-BC3B-962623CE499F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperlessWorkerService", "PaperlessWorkerService\PaperlessWorkerService.csproj", "{DF8BFA2F-2982-4E2A-8B4F-11CB8DEF1EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9E5C74A9-F362-4BC3-BC3B-962623CE499F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5C74A9-F362-4BC3-BC3B-962623CE499F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E5C74A9-F362-4BC3-BC3B-962623CE499F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF8BFA2F-2982-4E2A-8B4F-11CB8DEF1EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF8BFA2F-2982-4E2A-8B4F-11CB8DEF1EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF8BFA2F-2982-4E2A-8B4F-11CB8DEF1EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF8BFA2F-2982-4E2A-8B4F-11CB8DEF1EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
