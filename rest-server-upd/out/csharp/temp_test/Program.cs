@@ -5,16 +5,16 @@ using Entities.Concrete;
 
 Console.WriteLine("Hello, World!");
 
-DocumentManager docManager = new DocumentManager(new EfDocumentDal());
+//DocumentManager docManager = new DocumentManager(new EfDocumentDal());
 
-docManager.Add(new Document { Title = "deneme78ts" });
+//docManager.Add(new Document { Title = "deneme78ts" });
 
-var results = docManager.Getall();
-foreach (var x in results)
-{
-    Console.WriteLine(x.Title);
+//var results = docManager.Getall();
+//foreach (var x in results)
+//{
+//    Console.WriteLine(x.Title);
 
-}
+//}
 
 //var found = docManager.GetByTitle("denemee3");
 //found.Title = "denemee4";

@@ -91,3 +91,6 @@ C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\obj\Debug\net6
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\obj\Debug\net6.0\temp_test.pdb
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\obj\Debug\net6.0\temp_test.genruntimeconfig.cache
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\obj\Debug\net6.0\ref\temp_test.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\System.IO.Pipelines.dll

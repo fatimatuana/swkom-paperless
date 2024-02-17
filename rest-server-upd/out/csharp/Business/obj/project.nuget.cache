@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WwkrTDMOeDEKPbX2ius6/d2tQX7AXkEDYaAQqxRNc2z+BlQF3i3leX1Vgbuc1v2bcdk/MqgK1X/VyrJgF2Gv4g==",
+  "dgSpecHash": "NaGIUKAoPlWM0Y9Hx6nBx7XlOK+aMJbUhqL72HQU6yuElcpWzKPIPoiQZgXiDWYXBEudEALl2eiSe9YxMQE1vA==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatim\\Desktop\\test-\\rest-server-upd\\out\\csharp\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fatim\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\autofac.extras.dynamicproxy\\7.1.0\\autofac.extras.dynamicproxy.7.1.0.nupkg.sha512",
+    "C:\\Users\\fatim\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\fatim\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",

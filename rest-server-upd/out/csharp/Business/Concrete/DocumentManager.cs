@@ -1,20 +1,23 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
     public class DocumentManager : IDocumentService
     {
-
+        IMapper _mapper;
         IDocumentDal _documentDal;
 
-        public DocumentManager(IDocumentDal documentDal)
+        public DocumentManager(IDocumentDal documentDal, IMapper mapper)
         {
             _documentDal = documentDal;
+            _mapper = mapper;
         }
 
         [ValidationAspect(typeof(DocumentValidator))]
@@ -61,6 +64,9 @@ namespace Business.Concrete
                     DocumentType = 1,
                     Content = fileData.ContentDisposition
                 };
+
+                var fileInfo = _mapper.Map<DocumentTypeDto>(document);
+                document.DocumentExtension = fileInfo.DocumentExtension;
 
                 using (var stream = new MemoryStream())
                 {

@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Controllers
             //Document document = new Document();
             //document.Title = file.FileName;
             _documentService.PostFileAsync(file);
-            return Ok();
+            return Ok(file.FileName);
             
         }
 

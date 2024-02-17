@@ -25,6 +25,7 @@ using Org.OpenAPITools.Filters;
 using Org.OpenAPITools.OpenApi;
 using Org.OpenAPITools.Formatters;
 
+
 namespace Org.OpenAPITools
 {
     /// <summary>
@@ -110,6 +111,7 @@ namespace Org.OpenAPITools
                 });
                 services
                     .AddSwaggerGenNewtonsoftSupport();
+
         }
 
         /// <summary>

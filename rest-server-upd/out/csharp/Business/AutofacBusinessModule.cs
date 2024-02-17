@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
+using Business.Mappers;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
@@ -17,6 +19,15 @@ namespace Business
         {
             builder.RegisterType<DocumentManager>().As<IDocumentService>().SingleInstance();
             builder.RegisterType<EfDocumentDal>().As<IDocumentDal>().SingleInstance();
+
+            builder.Register(context => new MapperConfiguration(cfg =>
+            {
+                // Configure your AutoMapper mappings here
+                cfg.AddProfile<DocumentProfile>(); // Replace with your actual AutoMapper profile class
+            })).AsSelf().SingleInstance();
+
+            builder.Register(c => c.Resolve<MapperConfiguration>().CreateMapper(c.Resolve)).As<IMapper>().InstancePerLifetimeScope();
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

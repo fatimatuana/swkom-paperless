@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Business/1.0.0": {
         "dependencies": {
+          "AutoMapper": "13.0.1",
           "Autofac": "8.0.0",
           "Autofac.Extras.DynamicProxy": "7.1.0",
           "Core": "1.0.0",
@@ -39,6 +40,17 @@
           "lib/net6.0/Autofac.Extras.DynamicProxy.dll": {
             "assemblyVersion": "7.1.0.0",
             "fileVersion": "7.1.0.0"
+          }
+        }
+      },
+      "AutoMapper/13.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.0"
           }
         }
       },
@@ -345,6 +357,13 @@
       "sha512": "sha512-Da6Szv7A1LK/cTdeoyqS45zb/BC5vep8+86f6C1oh2UhZaYtiijlNfLWamp3lxe0uUQ33kFe1dDCjsvfwJWzLg==",
       "path": "autofac.extras.dynamicproxy/7.1.0",
       "hashPath": "autofac.extras.dynamicproxy.7.1.0.nupkg.sha512"
+    },
+    "AutoMapper/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "path": "automapper/13.0.1",
+      "hashPath": "automapper.13.0.1.nupkg.sha512"
     },
     "Castle.Core/5.1.1": {
       "type": "package",
