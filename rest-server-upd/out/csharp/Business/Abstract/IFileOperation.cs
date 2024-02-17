@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Amazon.S3.Model;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Business.Abstract
     public interface IFileOperation
     {
         Task<string> UploadFile(IFormFile file);
-        string GetFile(string key);
+         Task<GetObjectResponse> GetFile(string key);
     }
 
 }

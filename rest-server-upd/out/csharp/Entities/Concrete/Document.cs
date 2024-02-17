@@ -15,6 +15,7 @@ namespace Entities.Concrete
         public int Correspondent { get; set; }
         public int DocumentType { get; set; }
         public int? StoragePath { get; set; }
+        public string Key { get; set; }
 
         public string? DocumentExtension { get; set; }
 

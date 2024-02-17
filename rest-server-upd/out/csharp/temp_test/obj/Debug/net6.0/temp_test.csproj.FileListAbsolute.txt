@@ -99,3 +99,7 @@ C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\x64\leptonica-1.82.0.dll
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\x64\tesseract50.dll
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\Tesseract.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\AWSSDK.S3.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\temp_test\bin\Debug\net6.0\System.Threading.Channels.dll

@@ -58,7 +58,7 @@ namespace Business.Concrete
         }
 
    
-        public void PostFileAsync(IFormFile fileData)
+        public async void PostFileAsync(IFormFile fileData)
         {
             try
             {
@@ -80,10 +80,11 @@ namespace Business.Concrete
 
                     document.Documentfile = stream.ToArray();
                 }
-
+                var key = await _fileOperation.UploadFile(fileData);
+                document.Key = key;
                 _documentDal.Add(document);
-                _fileOperation.UploadFile(fileData);
-                _rabbitMQService.SendEvent(document);
+           
+                _rabbitMQService.SendEvent(key);
 
 
                 //var result = dbContextClass.FileDetails.Add(fileDetails);

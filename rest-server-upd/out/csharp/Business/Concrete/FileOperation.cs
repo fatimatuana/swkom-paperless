@@ -60,11 +60,12 @@ namespace Business.Concrete
             catch (Exception e)
             {
                 Logger.LogError("Error ocurred In UploadFileAsync", e);
+                throw new Exception("Error ocurred In UploadFileAsync", e);
             }
             return key;
         }
 
-        public string GetFile(string key)
+        public string GetPreSignedURL(string key)
         {
             if (string.IsNullOrEmpty(key)) return null;
 
@@ -74,6 +75,44 @@ namespace Business.Concrete
                 Key = key,
                 Expires = DateTime.Now.AddMinutes(30)
             });
+        }
+
+        public async Task<GetObjectResponse> GetFile(string key)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            if (string.IsNullOrEmpty(key)) return null;
+
+            return await _client.GetObjectAsync(bucketName, key);
+
+
+        }
+
+        string GetContentType(string fileName)
+        {
+            if (fileName.Contains(".jpg"))
+            {
+                return "image/jpg";
+            }
+            else if (fileName.Contains(".jpeg"))
+            {
+                return "image/jpeg";
+            }
+            else if (fileName.Contains(".png"))
+            {
+                return "image/png";
+            }
+            else if (fileName.Contains(".gif"))
+            {
+                return "image/gif";
+            }
+            else if (fileName.Contains(".pdf"))
+            {
+                return "application/pdf";
+            }
+            else
+            {
+                return "application/octet-stream";
+            }
         }
     }
 }
