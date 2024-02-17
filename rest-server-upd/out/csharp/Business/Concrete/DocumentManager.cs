@@ -14,11 +14,13 @@ namespace Business.Concrete
     {
         IMapper _mapper;
         IDocumentDal _documentDal;
+        IFileOperation _fileOperation;
 
-        public DocumentManager(IDocumentDal documentDal, IMapper mapper)
+        public DocumentManager(IDocumentDal documentDal, IMapper mapper, IFileOperation fileOperation)
         {
             _documentDal = documentDal;
             _mapper = mapper;
+            _fileOperation = fileOperation;
         }
 
         [ValidationAspect(typeof(DocumentValidator))]
@@ -52,8 +54,7 @@ namespace Business.Concrete
             _documentDal.Update(document);
         }
 
-        public const string folderName = "images/";
-        public const string trainedDataFolderName = "tessdata";
+   
         public void PostFileAsync(IFormFile fileData)
         {
             try
@@ -78,33 +79,9 @@ namespace Business.Concrete
                 }
 
                 _documentDal.Add(document);
+                _fileOperation.UploadFile(fileData);
 
 
-                string name = fileData.FileName;
-                var image = fileData;
-
-                if (image.Length > 0)
-                {
-                    using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
-                    {
-                        image.CopyTo(fileStream);
-                    }
-                }
-
-                string tessPath = Path.Combine(trainedDataFolderName, "");
-                string result = "";
-
-                using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
-                {
-                    using (var img = Pix.LoadFromFile(folderName + name))
-                    {
-                       
-                        var page = engine.Process(img);
-                        result = page.GetText();
-                        Console.WriteLine(result);
-                    }
-                }
-                Console.WriteLine(result);
 
                 //var result = dbContextClass.FileDetails.Add(fileDetails);
                 //await dbContextClass.SaveChangesAsync();
@@ -114,6 +91,36 @@ namespace Business.Concrete
                 throw;
             }
         }
+
+
+        //public const string folderName = "images/";
+        //public const string trainedDataFolderName = "tessdata";
+        //        string name = fileData.FileName;
+        //        var image = fileData;
+
+        //                if (image.Length > 0)
+        //                {
+        //                    using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
+        //                    {
+        //                        image.CopyTo(fileStream);
+        //                    }
+        //}
+
+        //string tessPath = Path.Combine(trainedDataFolderName, "");
+        //string result = "";
+
+        //using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
+        //{
+        //    using (var img = Pix.LoadFromFile(folderName + name))
+        //    {
+
+        //        var page = engine.Process(img);
+        //        result = page.GetText();
+        //        Console.WriteLine(result);
+        //    }
+        //}
+        //Console.WriteLine(result);
+
 
 
         //public void PostFileAsync(IFormFile fileData)

@@ -19,6 +19,7 @@ namespace Business
         {
             builder.RegisterType<DocumentManager>().As<IDocumentService>().SingleInstance();
             builder.RegisterType<EfDocumentDal>().As<IDocumentDal>().SingleInstance();
+            builder.RegisterType<FileOperation>().As<IFileOperation>().SingleInstance();
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {

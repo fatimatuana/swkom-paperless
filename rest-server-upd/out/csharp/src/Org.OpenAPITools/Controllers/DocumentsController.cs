@@ -12,10 +12,12 @@ namespace Org.OpenAPITools.Controllers
     public class DocumentsController : ControllerBase
     {
         IDocumentService _documentService;
+  
 
         public DocumentsController(IDocumentService documentService)
         {
             _documentService = documentService;
+          
         }
 
         //[HttpPost]
@@ -47,6 +49,8 @@ namespace Org.OpenAPITools.Controllers
             //Document document = new Document();
             //document.Title = file.FileName;
             _documentService.PostFileAsync(file);
+   
+
             return Ok(file.FileName);
             
         }
