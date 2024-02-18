@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 EXPOSE 8000
 # Copy the main solution file
@@ -6,8 +6,8 @@ EXPOSE 8000
 
 # Copy the Business.csproj file and restore dependencies
 #WORKDIR /src
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
+
+
 COPY Business/Business.csproj Business/
 COPY DataAccess/DataAccess.csproj DataAccess/
 COPY Entities/Entities.csproj Entities/
