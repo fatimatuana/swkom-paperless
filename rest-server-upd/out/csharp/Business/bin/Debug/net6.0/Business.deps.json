@@ -16,6 +16,7 @@
           "DataAccess": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Minio": "6.0.2",
           "NEST": "7.17.5",
           "RabbitMQ.Client": "6.8.1",
@@ -433,6 +434,7 @@
           "Castle.Core": "5.1.1",
           "FluentValidation": "11.9.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "runtime": {
@@ -443,6 +445,7 @@
         "dependencies": {
           "Core": "1.0.0",
           "Entities": "1.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "runtime": {

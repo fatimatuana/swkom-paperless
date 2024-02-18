@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations; // for [Required]..
 
 //bizimkii 
@@ -58,9 +59,8 @@ namespace Org.OpenAPITools.Controllers
             //document.Title = file.FileName;
             _documentService.PostFileAsync(file);
    
-
+            if(file == null) { throw new DocumentCtr_NullReferenceException(); }
             return Ok(file.FileName);
-            
         }
 
         [HttpDelete]
@@ -74,3 +74,5 @@ namespace Org.OpenAPITools.Controllers
 
     }
 }
+
+public class DocumentCtr_NullReferenceException : NullReferenceException{ };

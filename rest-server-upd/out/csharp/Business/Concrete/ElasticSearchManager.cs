@@ -43,17 +43,20 @@ namespace Business.Concrete
         public ElasticDocument SearchDocument(string key)
         {
             var response = _elasticClient.Search<ElasticDocument>(i => i
-  .Query(q => q.Bool(b => b
-        .Should(
-            s => s.Match(m => m.Query(key).Field(f => f.Content).Fuzziness(Fuzziness.EditDistance(1)))
-        ))));
+            .Query(q => q.Bool(b => b
+            .Should(
+                s => s.Match(m => m.Query(key).Field(f => f.Content).Fuzziness(Fuzziness.EditDistance(1)))
+            ))));
 
             if(response.Documents.Count() > 0)
             {
                 return response.Documents.First();
             }
 
-            throw new Exception("Doc not found");
+            throw new ElasticSearch_DocumentNotFoundException();
         }
     }
 }
+
+public class ElasticSearch_DocumentNotFoundException : FileNotFoundException{ };
+

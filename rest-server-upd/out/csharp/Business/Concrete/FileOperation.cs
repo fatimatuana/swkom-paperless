@@ -35,7 +35,6 @@ namespace Business.Concrete
             _minio = new MinioClient()
                 .WithEndpoint(minIoEndPoint)
                 .WithCredentials(minIoPassword, minioSecretkey)
-                //.WithSSL()
                 .Build();
 
         }
@@ -61,24 +60,14 @@ namespace Business.Concrete
             return key;
         }
 
-        //public string GetPreSignedURL(string key)
-        //{
-        //    if (string.IsNullOrEmpty(key)) return null;
-
-        //    return _client.GetPreSignedURL(new GetPreSignedUrlRequest()
-        //    {
-        //        BucketName = bucketName,
-        //        Key = key,
-        //        Expires = DateTime.Now.AddMinutes(30)
-        //    });
-        //}
-
         public async Task<Stream> GetFile(string key)
         {
-
             var memoryStream = new MemoryStream();
             var getObjectArgs = new GetObjectArgs().WithBucket(bucketName).WithObject(key)
                 .WithCallbackStream((stream) => stream.CopyTo(memoryStream));
+
+            if(getObjectArgs == null) { throw new File_MinioFileNotFound(); };
+
             await _minio.GetObjectAsync(getObjectArgs);
 
             // Reset the stream position to the beginning. (This is required for the stream to be read.)
@@ -89,3 +78,6 @@ namespace Business.Concrete
 
     }
 }
+
+public class File_MinioFileNotFound : ArgumentNullException { };
+public class File_ErrorDuringFileUplaod : ArgumentNullException { };

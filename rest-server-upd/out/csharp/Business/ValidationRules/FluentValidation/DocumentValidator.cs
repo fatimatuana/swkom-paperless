@@ -9,21 +9,22 @@ namespace Business.ValidationRules.FluentValidation
     {
         public DocumentValidator()
         {
-            RuleFor(p => p.Title).Must(EndsWithTxt).WithMessage("document has to end with .txt");
-            //RuleFor(p => p.ProductName).MinimumLength(2);
-            RuleFor(p => p.Title).Must(StartWithA).WithMessage("documents has to start with A");
-
-            // PDF vs yuklenirse hata yolla 
+            RuleFor(p => p.DocumentExtension).Must(IsImage).WithMessage("Uploaded file has to be an image.");
         }
 
-        private bool EndsWithTxt(string arg)
+        private bool IsImage(string docExtension)
         {
-            return arg.EndsWith("t");
-        }
-
-        private bool StartWithA(string arg)
-        {
-            return arg.StartsWith("A");
+            var docExtensionUpper = docExtension.ToUpper();
+            switch (docExtensionUpper)
+            {
+                case "JPEG":
+                case "PNG":
+                case "JPG":
+                case "TIFF":
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

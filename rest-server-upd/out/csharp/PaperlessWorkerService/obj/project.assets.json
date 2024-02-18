@@ -896,6 +896,7 @@
           "DataAccess": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Minio": "6.0.2",
           "NEST": "7.17.5",
           "RabbitMQ.Client": "6.8.1",
@@ -915,6 +916,7 @@
           "Castle.Core": "5.1.1",
           "FluentValidation": "11.9.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "compile": {
@@ -930,6 +932,7 @@
         "dependencies": {
           "Core": "1.0.0",
           "Entities": "1.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "compile": {
@@ -2598,7 +2601,8 @@
     "net6.0": [
       "Autofac.Extensions.DependencyInjection >= 9.0.0",
       "Business >= 1.0.0",
-      "Microsoft.Extensions.Hosting >= 6.0.1"
+      "Microsoft.Extensions.Hosting >= 6.0.1",
+      "Microsoft.Extensions.Logging >= 8.0.0"
     ]
   },
   "packageFolders": {
@@ -2658,6 +2662,10 @@
           "Microsoft.Extensions.Hosting": {
             "target": "Package",
             "version": "[6.0.1, )"
+          },
+          "Microsoft.Extensions.Logging": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           }
         },
         "imports": [

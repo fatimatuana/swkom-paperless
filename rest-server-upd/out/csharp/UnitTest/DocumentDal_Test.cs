@@ -9,6 +9,8 @@ using Minio;
 using Minio.DataModel.Args;
 using Moq;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace UnitTest
@@ -44,9 +46,7 @@ namespace UnitTest
             var imapperMock = new Mock<IMapper>(); 
             var ifileMock = new Mock<IFileOperation>();
             var irqMock = new Mock<IRabbitMQService>();
-
             documentDalMock.Setup(m => m.Get(x=>x.Id==1)).Returns(new Document() {Id=1 });
-
 
             var documentManager = new DocumentManager(documentDalMock.Object, imapperMock.Object, ifileMock.Object, irqMock.Object);
 
@@ -56,6 +56,7 @@ namespace UnitTest
             // Assert
             Assert.Equal(1 , result.Id);
         }
+
 
     }
 }

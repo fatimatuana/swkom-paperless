@@ -21,18 +21,25 @@ namespace Business.Concrete
                 UserName = "paperless",
                 Password = "paperless"
             };
-            //Create the RabbitMQ connection using connection factory details as i mentioned above
-            var connection = factory.CreateConnection();
-            //Here we create channel with session and model
-            using
-            var channel = connection.CreateModel();
-            //declare the queue after mentioning name and a few property related to that
-            channel.QueueDeclare("document", exclusive: false);
-            //Serialize the message
-            var json = JsonConvert.SerializeObject(message);
-            var body = Encoding.UTF8.GetBytes(json);
-            //put the data on to the product queue
-            channel.BasicPublish(exchange: "", routingKey: "document", body: body);
+            try
+            {
+                //Create the RabbitMQ connection using connection factory details as i mentioned above
+                var connection = factory.CreateConnection();
+                //Here we create channel with session and model
+                using
+                var channel = connection.CreateModel();
+                //declare the queue after mentioning name and a few property related to that
+                channel.QueueDeclare("document", exclusive: false);
+                //Serialize the message
+                var json = JsonConvert.SerializeObject(message);
+                var body = Encoding.UTF8.GetBytes(json);
+                //put the data on to the product queue
+                channel.BasicPublish(exchange: "", routingKey: "document", body: body);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public void GetEvent()
@@ -44,17 +51,36 @@ namespace Business.Concrete
                 UserName = "paperless",
                 Password = "paperless"
             };
-            //Create the RabbitMQ connection using connection factory details as i mentioned above
-            var connection = factory.CreateConnection();
-            //Here we create channel with session and model
-            using
-            var channel = connection.CreateModel();
-            //declare the queue after mentioning name and a few property related to that
 
-            //put the data on to the product queue
-            var _consumer = new EventingBasicConsumer(channel);
-            var response = channel.BasicConsume("document", true, _consumer);
-            Console.WriteLine(response);
+            if (factory.HostName == null || factory.UserName == null || factory.Password == null)
+            {
+                throw new RabbitMQ_NoDataException();
+            };
+
+            try
+            {
+                //Create the RabbitMQ connection using connection factory details as i mentioned above
+                var connection = factory.CreateConnection();
+                //Here we create channel with session and model
+                using
+                var channel = connection.CreateModel();
+                //declare the queue after mentioning name and a few property related to that
+
+                //put the data on to the product queue
+                var _consumer = new EventingBasicConsumer(channel);
+                var response = channel.BasicConsume("document", true, _consumer);
+                if (response == null) throw new RabbitMQ_NoDataException();
+
+                Console.WriteLine(response);
+            }
+            catch (Exception)
+            {
+                //throw;
+                throw new RabbitMQ_NoDataException();
+            }
         }
     }
+
 }
+
+public class RabbitMQ_NoDataException : MissingFieldException { };

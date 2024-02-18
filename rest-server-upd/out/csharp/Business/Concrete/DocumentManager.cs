@@ -6,6 +6,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Tesseract;
 
 namespace Business.Concrete
@@ -89,26 +90,14 @@ namespace Business.Concrete
                 _documentDal.Add(document);
            
                 _rabbitMQService.SendEvent(key);
-
             }
             catch (Exception)
             {
-                throw;
+                throw new Document_UploadErrorException();
             }
         }
-
-        //private string PerformOCR(byte[] imageData)
-        //{
-        //    using (var engine = new TesseractEngine("./tessdata", "deu", EngineMode.Default))
-        //    {
-        //        using (var pix = Pix.LoadFromMemory(imageData))
-        //        {
-        //            using (var page = engine.Process(pix))
-        //            {
-        //                return page.GetText();
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
+
+
+public class Document_UploadErrorException : ApplicationException { };
