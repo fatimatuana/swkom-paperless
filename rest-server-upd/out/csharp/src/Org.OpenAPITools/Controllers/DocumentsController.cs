@@ -21,38 +21,22 @@ namespace Org.OpenAPITools.Controllers
             _elasticSearchService = elasticSearchService;
         }
 
-        //[HttpPost]
-        //public IActionResult Add(Document document)
-        //{
-        //    _documentService.Add(document);
-        //        return Ok();
-        //}
-
         //[HttpGet]
-        //public IActionResult Getall()
+        //public IActionResult Get(string title)
         //{
-        //    var result = _documentService.Getall();
-        //    return Ok(result);
+        //    var result = _documentService.GetByTitle(title);
+        //    return Ok(result.Content);
         //}
-
-        [HttpGet]
-        public IActionResult Get(string title)
-        {
-            var result = _documentService.GetByTitle(title);
-            //var result = _documentService.GetByTitle("if21b140_github_repo.txt");
-            return Ok(result.Content);
-        }
 
         [HttpGet("search")]
         public IActionResult Search(string text)
         {
             var result = _elasticSearchService.SearchDocument(text);
-            //var result = _documentService.GetByTitle("if21b140_github_repo.txt");
             return Ok(result.Content);
         }
 
         [HttpPost]
-        public ActionResult UploadImage(IFormFile file)
+        public ActionResult UploadImage([Required] IFormFile file)
         {
             
             //Document document = new Document();
