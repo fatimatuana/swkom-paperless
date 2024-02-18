@@ -12,11 +12,12 @@ namespace Org.OpenAPITools.Controllers
     public class DocumentsController : ControllerBase
     {
         IDocumentService _documentService; 
-        
-        public DocumentsController(IDocumentService documentService)
+        IElasticSearchService _elasticSearchService;
+
+        public DocumentsController(IDocumentService documentService, IElasticSearchService elasticSearchService)
         {
             _documentService = documentService;
-          
+            _elasticSearchService = elasticSearchService;
         }
 
         //[HttpPost]
@@ -37,6 +38,14 @@ namespace Org.OpenAPITools.Controllers
         public IActionResult Get(string title)
         {
             var result = _documentService.GetByTitle(title);
+            //var result = _documentService.GetByTitle("if21b140_github_repo.txt");
+            return Ok(result.Content);
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search(string text)
+        {
+            var result = _elasticSearchService.SearchDocument(text);
             //var result = _documentService.GetByTitle("if21b140_github_repo.txt");
             return Ok(result.Content);
         }

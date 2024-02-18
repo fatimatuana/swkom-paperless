@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface IFileOperation
     {
         Task<string> UploadFile(IFormFile file);
-         Task<GetObjectResponse> GetFile(string key);
+        Task<Stream> GetFile(string key);
     }
 
 }

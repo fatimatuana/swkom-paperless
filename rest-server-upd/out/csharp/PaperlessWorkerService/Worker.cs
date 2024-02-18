@@ -14,15 +14,19 @@ namespace PaperlessWorkerService
         private readonly ILogger<Worker> _logger;
         private readonly IRabbitMQService _consumer;
         private readonly IFileOperation _fileOperation;
+        private readonly IDocumentService _documentService;
+        private readonly IElasticSearchService _elasticSearchService;
 
         public const string folderName = "images/";
         public const string trainedDataFolderName = "tessdata";
 
-        public Worker(ILogger<Worker> logger, IRabbitMQService consumer, IFileOperation fileOperation)
+        public Worker(ILogger<Worker> logger, IRabbitMQService consumer, IFileOperation fileOperation, IDocumentService documentService, IElasticSearchService elasticSearchService)
         {
             _logger = logger;
             _consumer = consumer;
             _fileOperation = fileOperation;
+            _documentService = documentService;
+            _elasticSearchService = elasticSearchService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -47,17 +51,15 @@ namespace PaperlessWorkerService
             {
                 var body = eventArgs.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                var documentId = JsonConvert.DeserializeObject<string>(message);
-                var file = await _fileOperation.GetFile(documentId);
+                var documentKey = JsonConvert.DeserializeObject<string>(message);
+                var stream = await _fileOperation.GetFile(documentKey);
 
-                string name = documentId;
-                var image = file.ResponseStream;
 
-                if (image.Length > 0)
+                if (stream.Length > 0)
                 {
-                    using (var fileStream = new FileStream(folderName + documentId, FileMode.Create))
+                    using (var fileStream = new FileStream(folderName + documentKey, FileMode.Create))
                     {
-                        image.CopyTo(fileStream);
+                        stream.CopyTo(fileStream);
                     }
                 }
 
@@ -66,7 +68,7 @@ namespace PaperlessWorkerService
 
                 using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
                 {
-                    using (var img = Pix.LoadFromFile(folderName + name))
+                    using (var img = Pix.LoadFromFile(folderName + documentKey))
                     {
 
                         var page = engine.Process(img);
@@ -76,7 +78,12 @@ namespace PaperlessWorkerService
                 }
                 Console.WriteLine(result);
 
-                Console.WriteLine($"Document message received: {file}");
+                var document = _documentService.GetByKey(documentKey);
+                document.OcrResult = result;
+                _documentService.Update(document);
+
+                var elasticDocument = new ElasticDocument() { Content = result, Key = documentKey };
+                _elasticSearchService.PutDocument(elasticDocument);
             };
             //read the message
             channel.BasicConsume(queue: "document", autoAck: true, consumer: consumer);
@@ -90,36 +97,36 @@ namespace PaperlessWorkerService
             //}
         }
 
-        public void OCR(IFormFile fileData)
-        {
+        //public void OCR(IFormFile fileData)
+        //{
 
-            string name = fileData.FileName;
-            var image = fileData;
+        //    string name = fileData.FileName;
+        //    var image = fileData;
 
-            if (image.Length > 0)
-            {
-                using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                }
-            }
+        //    if (image.Length > 0)
+        //    {
+        //        using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
+        //        {
+        //            image.CopyTo(fileStream);
+        //        }
+        //    }
 
-            string tessPath = Path.Combine(trainedDataFolderName, "");
-            string result = "";
+        //    string tessPath = Path.Combine(trainedDataFolderName, "");
+        //    string result = "";
 
-            using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
-            {
-                using (var img = Pix.LoadFromFile(folderName + name))
-                {
+        //    using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
+        //    {
+        //        using (var img = Pix.LoadFromFile(folderName + name))
+        //        {
 
-                    var page = engine.Process(img);
-                    result = page.GetText();
-                    Console.WriteLine(result);
-                }
-            }
-            Console.WriteLine(result);
+        //            var page = engine.Process(img);
+        //            result = page.GetText();
+        //            Console.WriteLine(result);
+        //        }
+        //    }
+        //    Console.WriteLine(result);
 
-        }
+        //}
 
         public static byte[] ReadStream(Stream responseStream)
         {

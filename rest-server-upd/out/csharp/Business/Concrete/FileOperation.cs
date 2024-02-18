@@ -5,9 +5,13 @@ using Business.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Minio;
+using Minio.DataModel.Args;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,20 +25,19 @@ namespace Business.Concrete
         private string minIoPassword => Configuration["MinioAccessInfo:Password"];
         private string minIoEndPoint => Configuration["MinioAccessInfo:EndPoint"];
         private string bucketName => Configuration["MinioAccessInfo:BucketName"];
-        private readonly AmazonS3Client _client;
+
+        private readonly IMinioClient _minio;
 
         public FileOperation(IConfiguration Configuration, ILogger<FileOperation> logger)
         {
             this.Configuration = Configuration;
             this.Logger = logger;
-            var config = new AmazonS3Config
-            {
-                RegionEndpoint = RegionEndpoint.GetBySystemName("us-east-1"),
-                ServiceURL = minIoEndPoint,
-                ForcePathStyle = true,
-                SignatureVersion = "2"
-            };
-            _client = new AmazonS3Client(minioSecretkey, minIoPassword, config);
+            _minio = new MinioClient()
+                                   .WithEndpoint(minIoEndPoint)
+                                   .WithCredentials(minIoPassword, minioSecretkey)
+                                   //.WithSSL()
+                                   .Build();
+
         }
 
         public async Task<string> UploadFile(IFormFile file)
@@ -44,18 +47,12 @@ namespace Business.Concrete
             {
                 key = Guid.NewGuid().ToString();
                 var stream = file.OpenReadStream();
-                var request = new PutObjectRequest()
-                {
-                    BucketName = bucketName,
-                    InputStream = stream,
-                    AutoCloseStream = true,
-                    Key = key,
-                    ContentType = file.ContentType
-                };
-                var encodedFilename = Uri.EscapeDataString(file.FileName);
-                request.Metadata.Add("original-filename", encodedFilename);
-                request.Headers.ContentDisposition = $"attachment; filename=\"{encodedFilename}\"";
-                await _client.PutObjectAsync(request);
+
+                var putObjectArgs = new PutObjectArgs()
+                   .WithBucket(bucketName).WithStreamData(stream).WithObject(key)
+.WithObjectSize(stream.Length);
+
+                await _minio.PutObjectAsync(putObjectArgs);
             }
             catch (Exception e)
             {
@@ -65,54 +62,31 @@ namespace Business.Concrete
             return key;
         }
 
-        public string GetPreSignedURL(string key)
-        {
-            if (string.IsNullOrEmpty(key)) return null;
+        //public string GetPreSignedURL(string key)
+        //{
+        //    if (string.IsNullOrEmpty(key)) return null;
 
-            return _client.GetPreSignedURL(new GetPreSignedUrlRequest()
-            {
-                BucketName = bucketName,
-                Key = key,
-                Expires = DateTime.Now.AddMinutes(30)
-            });
+        //    return _client.GetPreSignedURL(new GetPreSignedUrlRequest()
+        //    {
+        //        BucketName = bucketName,
+        //        Key = key,
+        //        Expires = DateTime.Now.AddMinutes(30)
+        //    });
+        //}
+
+        public async Task<Stream> GetFile(string key)
+        {
+
+            var memoryStream = new MemoryStream();
+            var getObjectArgs = new GetObjectArgs().WithBucket(bucketName).WithObject(key)
+                .WithCallbackStream((stream) => stream.CopyTo(memoryStream));
+            await _minio.GetObjectAsync(getObjectArgs);
+
+            // Reset the stream position to the beginning. (This is required for the stream to be read.)
+            memoryStream.Position = 0;
+            return memoryStream;
+
         }
 
-        public async Task<GetObjectResponse> GetFile(string key)
-        {
-            MemoryStream memoryStream = new MemoryStream();
-            if (string.IsNullOrEmpty(key)) return null;
-
-            return await _client.GetObjectAsync(bucketName, key);
-
-
-        }
-
-        string GetContentType(string fileName)
-        {
-            if (fileName.Contains(".jpg"))
-            {
-                return "image/jpg";
-            }
-            else if (fileName.Contains(".jpeg"))
-            {
-                return "image/jpeg";
-            }
-            else if (fileName.Contains(".png"))
-            {
-                return "image/png";
-            }
-            else if (fileName.Contains(".gif"))
-            {
-                return "image/gif";
-            }
-            else if (fileName.Contains(".pdf"))
-            {
-                return "application/pdf";
-            }
-            else
-            {
-                return "application/octet-stream";
-            }
-        }
     }
 }

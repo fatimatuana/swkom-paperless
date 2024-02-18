@@ -17,6 +17,10 @@ C:\Users\fatim\Desktop\test-\sooooooon\out\csharp\Business\obj\Debug\net6.0\Busi
 C:\Users\fatim\Desktop\test-\sooooooon\out\csharp\Business\obj\Debug\net6.0\refint\Business.dll
 C:\Users\fatim\Desktop\test-\sooooooon\out\csharp\Business\obj\Debug\net6.0\Business.pdb
 C:\Users\fatim\Desktop\test-\sooooooon\out\csharp\Business\obj\Debug\net6.0\ref\Business.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x86\leptonica-1.82.0.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x86\tesseract50.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x64\leptonica-1.82.0.dll
+C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x64\tesseract50.dll
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\Business.deps.json
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\Business.dll
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\Business.pdb
@@ -36,7 +40,3 @@ C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\obj\Debug\net6.
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\obj\Debug\net6.0\refint\Business.dll
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\obj\Debug\net6.0\Business.pdb
 C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\obj\Debug\net6.0\ref\Business.dll
-C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x86\leptonica-1.82.0.dll
-C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x86\tesseract50.dll
-C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x64\leptonica-1.82.0.dll
-C:\Users\fatim\Desktop\test-\rest-server-upd\out\csharp\Business\bin\Debug\net6.0\x64\tesseract50.dll

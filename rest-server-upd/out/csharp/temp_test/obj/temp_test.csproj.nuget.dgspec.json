@@ -75,6 +75,14 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Minio": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "NEST": {
+              "target": "Package",
+              "version": "[7.17.5, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.8.1, )"

@@ -21,6 +21,8 @@ namespace Business
             builder.RegisterType<EfDocumentDal>().As<IDocumentDal>().SingleInstance();
             builder.RegisterType<FileOperation>().As<IFileOperation>().SingleInstance();
             builder.RegisterType<RabbitMQManager>().As<IRabbitMQService>().SingleInstance();
+            builder.RegisterType<ElasticSearchManager>().As<IElasticSearchService>().SingleInstance();
+
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {

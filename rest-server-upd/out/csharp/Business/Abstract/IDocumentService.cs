@@ -22,6 +22,8 @@ namespace Business.Abstract
 
         void Update (Document document);
 
+        Document GetByKey (string key);
+
         void PostFileAsync(IFormFile fileData);
     }
 }

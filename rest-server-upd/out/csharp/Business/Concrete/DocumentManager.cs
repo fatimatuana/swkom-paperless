@@ -47,6 +47,12 @@ namespace Business.Concrete
             return _documentDal.Get(i => i.Id == id);            
         }
 
+        public Document GetByKey(string key)
+        {
+            return _documentDal.Get(i => i.Key == key);
+        }
+
+
         public Document GetByTitle(string title)
         {
             return _documentDal.Get(t => t.Title == title);
@@ -57,7 +63,7 @@ namespace Business.Concrete
             _documentDal.Update(document);
         }
 
-   
+
         public async void PostFileAsync(IFormFile fileData)
         {
             try
