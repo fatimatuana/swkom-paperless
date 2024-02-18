@@ -33,10 +33,10 @@ namespace Business.Concrete
             this.Configuration = Configuration;
             this.Logger = logger;
             _minio = new MinioClient()
-                                   .WithEndpoint(minIoEndPoint)
-                                   .WithCredentials(minIoPassword, minioSecretkey)
-                                   //.WithSSL()
-                                   .Build();
+                .WithEndpoint(minIoEndPoint)
+                .WithCredentials(minIoPassword, minioSecretkey)
+                //.WithSSL()
+                .Build();
 
         }
 
@@ -49,8 +49,7 @@ namespace Business.Concrete
                 var stream = file.OpenReadStream();
 
                 var putObjectArgs = new PutObjectArgs()
-                   .WithBucket(bucketName).WithStreamData(stream).WithObject(key)
-.WithObjectSize(stream.Length);
+                   .WithBucket(bucketName).WithStreamData(stream).WithObject(key).WithObjectSize(stream.Length);
 
                 await _minio.PutObjectAsync(putObjectArgs);
             }

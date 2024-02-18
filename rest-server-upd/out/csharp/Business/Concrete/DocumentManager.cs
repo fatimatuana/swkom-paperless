@@ -70,9 +70,7 @@ namespace Business.Concrete
             {
                 var document = new Document()
                 {
-                    //Id = 10,
                     Title = fileData.FileName,
-                    //Documentfile = fileData.ContentDisposition,
                     DocumentType = 1,
                     Content = fileData.ContentDisposition
                 };
@@ -92,9 +90,6 @@ namespace Business.Concrete
            
                 _rabbitMQService.SendEvent(key);
 
-
-                //var result = dbContextClass.FileDetails.Add(fileDetails);
-                //await dbContextClass.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -102,81 +97,18 @@ namespace Business.Concrete
             }
         }
 
-
-        //public const string folderName = "images/";
-        //public const string trainedDataFolderName = "tessdata";
-        //        string name = fileData.FileName;
-        //        var image = fileData;
-
-        //                if (image.Length > 0)
-        //                {
-        //                    using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
-        //                    {
-        //                        image.CopyTo(fileStream);
-        //                    }
-        //}
-
-        //string tessPath = Path.Combine(trainedDataFolderName, "");
-        //string result = "";
-
-        //using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
+        //private string PerformOCR(byte[] imageData)
         //{
-        //    using (var img = Pix.LoadFromFile(folderName + name))
+        //    using (var engine = new TesseractEngine("./tessdata", "deu", EngineMode.Default))
         //    {
-
-        //        var page = engine.Process(img);
-        //        result = page.GetText();
-        //        Console.WriteLine(result);
-        //    }
-        //}
-        //Console.WriteLine(result);
-
-
-
-        //public void PostFileAsync(IFormFile fileData)
-        //{
-        //    try
-        //    {
-        //        var document = new Document()
+        //        using (var pix = Pix.LoadFromMemory(imageData))
         //        {
-        //            Title = fileData.FileName,
-        //            DocumentType = 1,
-        //            Content = fileData.ContentDisposition
-        //        };
-
-        //        // Convert the IFormFile content to a byte array
-        //        using (var stream = new MemoryStream())
-        //        {
-        //            fileData.CopyTo(stream);
-        //            document.Documentfile = stream.ToArray();
+        //            using (var page = engine.Process(pix))
+        //            {
+        //                return page.GetText();
+        //            }
         //        }
-
-        //        // Perform OCR using Tesseract
-        //        string ocrResult = PerformOCR(document.Documentfile);
-
-        //        // Additional processing with OCR result, e.g., save to document or log
-        //        document.OcrResult = ocrResult;
-
-        //        _documentDal.Add(document);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
         //    }
         //}
-
-        private string PerformOCR(byte[] imageData)
-        {
-            using (var engine = new TesseractEngine("./tessdata", "deu", EngineMode.Default))
-            {
-                using (var pix = Pix.LoadFromMemory(imageData))
-                {
-                    using (var page = engine.Process(pix))
-                    {
-                        return page.GetText();
-                    }
-                }
-            }
-        }
     }
 }
