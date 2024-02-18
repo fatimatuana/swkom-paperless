@@ -52,8 +52,10 @@ namespace Business.Concrete
             {
                 return response.Documents.First();
             }
-
-            throw new ElasticSearch_DocumentNotFoundException();
+            else
+            {
+                throw new ElasticSearch_DocumentNotFoundException();
+            }
         }
     }
 }

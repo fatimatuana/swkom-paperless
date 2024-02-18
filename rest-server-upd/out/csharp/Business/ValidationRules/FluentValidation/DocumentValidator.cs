@@ -9,7 +9,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public DocumentValidator()
         {
-            RuleFor(p => p.DocumentExtension).Must(IsImage).WithMessage("Uploaded file has to be an image.");
+            RuleFor(p => GetExtension(p.Title)).Must(IsImage).WithMessage("Uploaded file has to be an image.");
         }
 
         private bool IsImage(string docExtension)
@@ -17,14 +17,28 @@ namespace Business.ValidationRules.FluentValidation
             var docExtensionUpper = docExtension.ToUpper();
             switch (docExtensionUpper)
             {
-                case "JPEG":
-                case "PNG":
-                case "JPG":
-                case "TIFF":
+                case ".JPEG":
+                case ".PNG":
+                case ".JPG":
+                case ".TIFF":
                     return true;
                 default:
                     return false;
             }
+        }
+
+
+        public static string GetExtension(string name)
+        {
+            int index = name.LastIndexOf(".");
+
+            if (index == -1)
+                return "";
+
+            if (index == name.Length - 1)
+                return "";
+
+            return name.Substring(index);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Business.Concrete
             _documentDal.Update(document);
         }
 
-
+        [ValidationAspect(typeof(DocumentValidator))]
         public async void PostFileAsync(IFormFile fileData)
         {
             try

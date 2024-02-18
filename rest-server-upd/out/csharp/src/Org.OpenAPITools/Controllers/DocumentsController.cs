@@ -36,13 +36,10 @@ namespace Org.OpenAPITools.Controllers
         }
 
         [HttpPost]
+        
         public ActionResult UploadImage([Required] IFormFile file)
         {
-            
-            //Document document = new Document();
-            //document.Title = file.FileName;
             _documentService.PostFileAsync(file);
-   
             if(file == null) { throw new DocumentCtr_NullReferenceException(); }
             return Ok(file.FileName);
         }
