@@ -12,6 +12,8 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.Title).Must(EndsWithTxt).WithMessage("document has to end with .txt");
             //RuleFor(p => p.ProductName).MinimumLength(2);
             RuleFor(p => p.Title).Must(StartWithA).WithMessage("documents has to start with A");
+
+            // PDF vs yuklenirse hata yolla 
         }
 
         private bool EndsWithTxt(string arg)
