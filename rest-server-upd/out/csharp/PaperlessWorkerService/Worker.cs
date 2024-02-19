@@ -89,45 +89,8 @@ namespace PaperlessWorkerService
             channel.BasicConsume(queue: "document", autoAck: true, consumer: consumer);
 
             Console.ReadKey();
-            //while (!stoppingToken.IsCancellationRequested)
-            //{
-            //    _consumer.GetEvent();
-            //    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            //    await Task.Delay(1000, stoppingToken);
-            //}
+
         }
-
-        //public void OCR(IFormFile fileData)
-        //{
-
-        //    string name = fileData.FileName;
-        //    var image = fileData;
-
-        //    if (image.Length > 0)
-        //    {
-        //        using (var fileStream = new FileStream(folderName + image.FileName, FileMode.Create))
-        //        {
-        //            image.CopyTo(fileStream);
-        //        }
-        //    }
-
-        //    string tessPath = Path.Combine(trainedDataFolderName, "");
-        //    string result = "";
-
-        //    using (var engine = new TesseractEngine(tessPath, "DEU", EngineMode.Default))
-        //    {
-        //        using (var img = Pix.LoadFromFile(folderName + name))
-        //        {
-
-        //            var page = engine.Process(img);
-        //            result = page.GetText();
-        //            Console.WriteLine(result);
-        //        }
-        //    }
-        //    Console.WriteLine(result);
-
-        //}
-
         public static byte[] ReadStream(Stream responseStream)
         {
             byte[] buffer = new byte[16 * 1024];

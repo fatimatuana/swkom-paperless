@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  myapp:
+    image: rest-server-multistage-build:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "85:85"
+      - "445:445"

@@ -36,7 +36,6 @@ namespace Org.OpenAPITools.Controllers
         }
 
         [HttpPost]
-        
         public ActionResult UploadImage([Required] IFormFile file)
         {
             _documentService.PostFileAsync(file);
